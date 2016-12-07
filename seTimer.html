@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/seTimer.js"></script>
+    <link rel="stylesheet" href="css/seTimer.css">
+    <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
+    <link rel="stylesheet" href="css/sticky-footer.css">
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+
+                        <a class="navbar-brand" href="bruger.html">CBS Evaluation inc.</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="login.html">Log ud <span class="sr-only">(current)</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+Select course:
+<select id="selectCourse">
+
+</select>
+
+<div class="page-header">
+    <h1>All lectures in Distributed systems</h1>
+</div>
+
+
+
+<table class="table">
+    <thead>
+    <th><center>Name on subject</center></th>
+    <th><center>Type</center></th>
+    <th><center>Date</center></th>
+    <th><center>View evaluation</center></th>
+    </thead>
+
+    <tbody id="lectureTableBody">
+    </tbody>
+
+
+</table>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+
+        $.getJSON( "http://localhost:6274/api/course/8", function( data ) {
+            data = jQuery.parseJSON(data);
+            $("#selectCourse").append( "<option value=''>  -- Select course --  </option>" );
+            for(var x = 0; x < data.length; x++) {
+                $("#selectCourse").append( "<option value='" + data[x].displaytext + "'>" + data[x].code + "</option>" );
+
+            }
+        });
+    });
+
+    $( "#selectCourse" ).on("change", function() {
+        var selectedValue = $("#selectCourse").val();
+        if(selectedValue == "") {
+
+            return;
+
+        }
+        var $lectureTableBody = $("#lectureTableBody");
+        $lectureTableBody.html("");
+        //Her henter man og får kontakt med serveren. eksempelet fra chrashcourset til books
+
+        $.getJSON( "http://localhost:6274/api/lecture/"+selectedValue, function( lectures ) {
+            lectures = jQuery.parseJSON(lectures);
+
+            console.log(lectures);
+
+            lectures.forEach(function(lecture){
+
+                $lectureTableBody.append(
+                        "<tr>" +
+                        "<td>" + lecture.description + "</td>" +
+                        "<td>" + lecture.type + "</td>" +
+                        "<td>" + lecture.startDate + "</td>" +
+                        <!-- Sett inn knappen hvor man kan legge igjen en kommentar og rating som lagres automatisk når man trykker på lagre  -->
+                        "<td><a role='button' href='lavEvaluering.html' class='btn btn-succes btn-lg'> View evaluation </a></td>" +
+                        "</tr>"
+                );
+            });
+        });
+    });
+
+
+
+</script>
+</body>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">2016 © All rights reserved - CBS lecture evaluation</p>
+    </div>
+</footer>
+
+</html>

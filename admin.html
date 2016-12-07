@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" href="lib/css/bootstrap.css">
+  <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
+  <link rel="stylesheet" href="css/sticky-footer.css">
+  <link rel="stylesheet" href="admin.css">
+
+
+
+  <meta charset="UTF-8">
+  <title>Admin panel</title>
+
+</head>
+<body>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-12">
+
+      <nav class="navbar navbar-inverse">
+
+          <div class="navbar-header">
+            <a class="navbar-brand" >CBS Evaluation inc.</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a id="logOutLink" href="login.html">Logud</a></li>
+            </ul>
+          </div>
+
+      </nav>
+
+
+      <div class="page-header">
+        <h1>Admin panel</h1>
+      </div>
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">CBS Evaluation</h3>
+        </div>
+        <div class="panel-body">
+
+
+          <hr>
+          <!-- Button trigger modal -->
+          <p style="text-align: center;">
+          <button class="btn btn-success" id="addNewEvaluationButton">
+             Delete Evaluation
+          </button>
+
+
+            <span style="float:left;">
+          <button class="btn btn-success" id="addNewDeleteButton">
+            See Evaluation
+          </button>
+            </span>
+
+          <span style="float:right;">
+          <button class="btn btn-success" id="showLessons">
+             <a href="seTimer.html"><font color="white"> Show lessons </font></a>
+          </button>
+            </span>
+
+        </p>
+        </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+  <footer class="footer">
+  <div class="container">
+    <p class="text-muted">2016 © All rights reserved - CBS evaluation Inc.</p>
+  </div>
+  </footer>
+
+<script src="js/admin.page.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="css/seTimer.css">
+    <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
+    <link rel="stylesheet" href="css/sticky-footer.css">
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+
+                        <a class="navbar-brand" href="bruger.html">CBS Evaluation inc.</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="login.html">Log ud <span class="sr-only">(current)</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+Select course:
+<select id="selectCourse">
+
+</select>
+
+<div class="page-header">
+    <h1>All lectures in Distributed systems</h1>
+</div>
+
+
+
+<table class="table">
+    <thead>
+    <th><center>Name on subject</center></th>
+    <th><center>Type</center></th>
+    <th><center>Date</center></th>
+    <th><center>View evaluation</center></th>
+    </thead>
+
+    <tbody id="lectureTableBody">
+    </tbody>
+
+
+</table>
+
+<div id="modul" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/js/bootstrap.js"></script>
+<script type="text/javascript" src="js/seTimer.js"></script>
+<script type="text/javascript" src="js/modul.js"></script>
+
+
+</body>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">2016 © All rights reserved - CBS lecture evaluation</p>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,51 @@
+
+.aargang{
+
+    position: fixed;
+    top: 33%;
+    left: 30%;
+}
+
+.evalueringTekst{
+    position: fixed;
+    top: 40%;
+    left: 30%;
+}
+
+.evaluering{
+    position: fixed;
+    width: 100%;
+    padding: 30%;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    position: fixed;
+    top: 56.5%;
+    left: 30%;
+
+}
+
+.rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+    content: "\2605";
+    position: absolute;
+}
+
+.evalueringSubmit {
+
+    position: fixed;
+    top: 60%;
+    left: 30%;
+
+}
