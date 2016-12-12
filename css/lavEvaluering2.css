@@ -17,6 +17,10 @@ table{
 
 
 
+#selectPosition {
+    position: absolute;
+    left: 40px;
+}
 
 
 

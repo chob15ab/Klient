@@ -4,36 +4,37 @@
 
 $(document).ready(function(){
 
-    var $lectureTableBody = $("#lectureTableBody")
-//Her henter man og får kontakt med serveren. eksempelet fra chrashcourset til books
-    $.ajax({
-        url:"http://localhost:6274/api/lecture/BINTO1067U_LA_E16",
-        method: "GET",
-        dataTyper: "json",
-        contetType:"application/json",
+    initiateSelectCourse();
 
-        success: function(lectures){
+    $("#deleteEvaluationSubmit").on("click", function(){
 
-
-            lectures.forEach(function(lecture){
-
-                $lectureTableBody.append(
-                    "<tr>" +
-                    "<td>" + lecture.description + "</td>" +
-                    "<td>" + lecture.type + "</td>" +
-                    "<td>" + lecture.startDate + "</td>" +
-                    <!-- Sett inn knappen hvor man kan legge igjen en kommentar og rating som lagres automatisk når man trykker på lagre  -->
-                    "<td><a role='button' href='lavEvaluering.html' class='btn btn-succes btn-lg'> Delete evaluation </a></td>" +
-                    "</tr>"
-                );
-            });
-        }
+        var sessionId = document.cookie;
+        if (!sessionId)
+            return;
+        alert(sessionId);
+        $.ajax({
+            url: "http://localhost:6274/api/student/review/"+sessionId,
+            method: "DELETE",
+            contentType: "application/json",
+            dataType: "json",
+            data: { json: {  "lectureId": lectureId } },
+            success: function (data, status, xhr) {
+                alert("yey");
+            },
+            error: function (xhr, status, errorThrown) {
+                alert("phaaaak");
+            }
+        });
     });
+    /*
+     private int id;
+     private int userId;
+     private int lectureId;
+     private int rating;
+     private String comment;
+     private boolean isDeleted;
+     */
 });
-
-
-
-
 
 
 

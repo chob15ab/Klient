@@ -3,41 +3,58 @@
  */
 $(document).ready(function(){
 
-    var $lectureTableBody = $("#lectureTableBody")
-//Her henter man og får kontakt med serveren. eksempelet fra chrashcourset til books
-    $.ajax({
-        url:"http://localhost:6274/api/lecture/BINTO1067U_LA_E16",
-        method: "GET",
-        dataTyper: "json",
-        contetType:"application/json",
+    initiateSelectCourse();
 
-        success: function(lectures){
+    $("#createEvaluationSubmit").on("click", function(){
+        var sessionId = document.cookie;
+        if (!sessionId)
+            return;
+        var comment = $("#createEvaluationComment").val();
+        var rating = $("#createEvaluationRating").val();
 
-
-            lectures.forEach(function(lecture){
-
-                $lectureTableBody.append(
-                    "<tr>" +
-                    "<td>" + lecture.description + "</td>" +
-                    "<td>" + lecture.type + "</td>" +
-                    "<td>" + lecture.startDate + "</td>" +
-                    <!-- Sett inn knappen hvor man kan legge igjen en kommentar og rating som lagres automatisk når man trykker på lagre  -->
-                    "<td><a role='button' href='lavEvaluering.html' class='btn btn-succes btn-lg'> Create evaluation </a></td>" +
-                    "</tr>"
-                );
-            });
-        }
+        //$.post( "http://localhost:6274/api/student/review/"+sessionId,  )
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:6274/api/student/review",
+            contentType: "application/json",
+            dataType: "json",
+            data: { "val": sessionId },//, json: { "lectureId": lectureId, "rating": rating, "comment": comment, "isDeleted": 0} },
+            success: function (data, status, xhr) {
+                alert("yey");
+            },
+            error: function (xhr, status, errorThrown) {
+                alert("phaaaak");
+            }
+        });
     });
+/*
+ private int id;
+ private int userId;
+ private int lectureId;
+ private int rating;
+ private String comment;
+ private boolean isDeleted;
+ */
 });
+/*
+login: function (username, password, cb) {
+    this.request({
+        data: {
+            cbsMail: username,
+            password: password
+        },
+        url: "/login",
+        method: "POST"
+    }, function (err, data) {
 
-"<
+        //On login-error
+        if (err) return cb(err);
 
+        SDK.Storage.persist("userId", data.id);
+        //SDK.Storage.persist("userId", data.userId);
+        SDK.Storage.persist("type", data.type);
 
+        cb(null, data);
 
-
-
-
-
-
-
-
+    });
+},

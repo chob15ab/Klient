@@ -32,7 +32,6 @@ $(document).ready(function () { // TODO: Add this to defence. document.cookie wi
                     "<td>" + lecture.description + "</td>" +
                     "<td>" + lecture.type + "</td>" +
                     "<td>" + lecture.startDate + "</td>" +
-                    "<td><button class='"+buttonCss+"'> "+buttonText+" </button></td>" +
                     "</tr>"
                 );
             });
@@ -66,4 +65,6 @@ function initiateSelectCourse() {
             }
         }
     });
-}
+}/**
+ * Created by christofferobel on 12/12/2016.
+ */

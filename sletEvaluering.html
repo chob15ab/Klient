@@ -17,8 +17,6 @@
 
 </head>
 <body>
-
-
 <div class="container">
 
     <div class="row">
@@ -43,10 +41,11 @@
 </div>
 
 
-Select course:
-<select id="selectCourse">
+<div id="selectPosition">
+    <select id="selectCourse" data-name="Delete evaluation" data-buttoncss="createEvalButton">
 
-</select>
+    </select>
+</div>
 
 <div class="page-header">
     <h1>All lectures in Distributed systems</h1>
@@ -59,7 +58,7 @@ Select course:
     <th><center>Name on subject</center></th>
     <th><center>Type</center></th>
     <th><center>Date</center></th>
-    <th><center>View evaluation</center></th>
+    <th><center>Delete evaluation</center></th>
     </thead>
 
     <tbody id="lectureTableBody">
@@ -68,53 +67,32 @@ Select course:
 
 </table>
 
-<script type="text/javascript">
-    $( document ).ready(function() {
-
-        $.getJSON( "http://localhost:6274/api/course/8", function( data ) {
-            data = jQuery.parseJSON(data);
-            $("#selectCourse").append( "<option value=''>  -- Select course --  </option>" );
-            for(var x = 0; x < data.length; x++) {
-                $("#selectCourse").append( "<option value='" + data[x].displaytext + "'>" + data[x].code + "</option>" );
-
-            }
-        });
-    });
-
-    $( "#selectCourse" ).on("change", function() {
-        var selectedValue = $("#selectCourse").val();
-        if(selectedValue == "") {
-
-            return;
-
-        }
-        var $lectureTableBody = $("#lectureTableBody");
-        $lectureTableBody.html("");
-        //Her henter man og får kontakt med serveren. eksempelet fra chrashcourset til books
-
-        $.getJSON( "http://localhost:6274/api/lecture/"+selectedValue, function( lectures ) {
-            lectures = jQuery.parseJSON(lectures);
-
-            console.log(lectures);
-
-            lectures.forEach(function(lecture){
-
-                $lectureTableBody.append(
-                        "<tr>" +
-                        "<td>" + lecture.description + "</td>" +
-                        "<td>" + lecture.type + "</td>" +
-                        "<td>" + lecture.startDate + "</td>" +
-                        <!-- Sett inn knappen hvor man kan legge igjen en kommentar og rating som lagres automatisk når man trykker på lagre  -->
-                        "<td><a role='button' href='lavEvaluering.html' class='btn btn-succes btn-lg'> Delete evaluation </a></td>" +
-                        "</tr>"
-                );
-            });
-        });
-    });
+<div id="modul" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Create Evaluation</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your evaluation (if you have one) on this course?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="deleteEvaluationSubmit">Ok</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/js/bootstrap.js"></script>
+<script type="text/javascript" src="js/modul.js"></script>
+<script type="text/javascript" src="js/sletEvaluering.js"></script>
 
-</script>
+
 </body>
 
 <footer class="footer">
