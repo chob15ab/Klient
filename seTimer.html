@@ -42,7 +42,7 @@
 
 
 <div id="selectPosition">
-    <select id="selectCourse" data-name="View evalutations" data-buttoncss="viewEvalButton">
+    <select id="selectCourse" data-name="View evalutations" data-buttoncss="createEvalButton">
 
     </select>
 </div>
@@ -75,11 +75,18 @@
                 <h4 class="modal-title">View Evaluations</h4>
             </div>
             <div class="modal-body">
-                <p>One fine body&hellip;</p>
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                        <th><center>Rating</center></th>
+                        <th>Comment</th>
+                    </thead>
+                    <tbody id="reviewTableBody">
+
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Ok</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

@@ -42,6 +42,9 @@ $(document).ready(function () { // TODO: Add this to defence. document.cookie wi
                     alert("An error occured. Please try again later.");
                 lectureId = clickedId;
                 $('#modul').modal();
+                if (typeof modulOpened == 'function') {
+                    modulOpened();
+                }
             })
         });
     });
@@ -54,6 +57,7 @@ function initiateSelectCourse() {
         location.href = '/login.html';
         return;
     }
+
     $.ajax({
         url:"http://localhost:6274/api/course/"+sessionId,
         method: "GET",
