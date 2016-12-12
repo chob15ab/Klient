@@ -44,8 +44,7 @@ var SDK = {
       //On login-error
       if (err) return cb(err);
 
-      SDK.Storage.persist("userId", data.id);
-      //SDK.Storage.persist("userId", data.userId);
+      SDK.Storage.persist("sessionId", data.sessionId);
       SDK.Storage.persist("type", data.type);
 
       cb(null, data);
@@ -54,13 +53,19 @@ var SDK = {
   },
 
   logOut:function() {
-    SDK.Storage.remove("tokenId");
-    SDK.Storage.remove("userId");
-    SDK.Storage.remove("user");
+    var sessionId = this.Storage.load("sessionId");
+    this.request({
+      url: "/logout/" + sessionId,
+      method: "GET"
+    }, function (err, data) {
+      SDK.Storage.remove("sessionId");
+      SDK.Storage.remove("type");
+      alert("Logout complete");
+    })
   },
 
   Storage: {
-    prefix: "CalenderSDK",
+    prefix: "MySuperApplication",
     persist: function (key, value) {
       window.localStorage.setItem(this.prefix + key, (typeof value === 'object') ? JSON.stringify(value) : value)
     },

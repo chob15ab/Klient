@@ -1,5 +1,10 @@
 
 $(document).ready(function () {
+  var sessionId = SDK.Storage.load("sessionId");
+  if (sessionId) {
+    alert("session id was: " + sessionId);
+    SDK.logOut();
+  }
 
   $("#loginButton").on("click", function(e){
     e.preventDefault();
@@ -26,6 +31,10 @@ $(document).ready(function () {
 
       else if (data.type === "student") {
         window.location.href="bruger.html";
+      }
+
+      else if (data.type === "teacher") {
+        window.location.href="teacher.html";
       }
 
       else {
