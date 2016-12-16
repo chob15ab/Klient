@@ -2,7 +2,7 @@
  * Created by christofferobel on 07/12/2016.
  */
 var lectureId = 0;
-$(document).ready(function () { // TODO: Add this to defence. document.cookie will essentially disallow any other cookies other than the session id... which is kind of fine due to the setup.
+$(document).ready(function () {
     var sessionId = document.cookie;
     if (!sessionId) {
         location.href = '/javascript-client-master/login.html';
@@ -65,6 +65,4 @@ function initiateSelectCourse() {
             }
         }
     });
-}/**
- * Created by christofferobel on 12/12/2016.
- */
+}

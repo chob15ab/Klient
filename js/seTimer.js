@@ -11,6 +11,7 @@ function modulOpened() {
     var $reviewTableBody = $("#reviewTableBody")
     $reviewTableBody.html("");
 
+    //review is collected
     $.getJSON("http://localhost:6274/api/review/"+sessionId+"/"+lectureId, function (reviews) {
         reviews = jQuery.parseJSON(reviews);
         reviews.forEach(function (review) {

@@ -16,6 +16,7 @@ function modulOpened() {
     var $reviewTableBody = $("#reviewTableBody")
     $reviewTableBody.html("");
 
+    //review is shown and lastly deleted if "deleteEvaluation is clicked
     $.getJSON("http://localhost:6274/api/review/"+sessionId+"/"+lectureId, function (reviews) {
         reviews = jQuery.parseJSON(reviews);
         reviews.forEach(function (review) {
@@ -30,6 +31,7 @@ function modulOpened() {
     });
 }
 
+//delete method
 function deleteEvaluation(button) {
     var sessionId = document.cookie;
     if (!sessionId)

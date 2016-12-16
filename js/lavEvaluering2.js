@@ -6,6 +6,7 @@ $(document).ready(function(){
 
     initiateSelectCourse();
 
+    //create comment method
     $("#createEvaluationSubmit").on("click", function(){
         var sessionId = document.cookie;
         if (!sessionId)
@@ -17,7 +18,8 @@ $(document).ready(function(){
             "rating": rating,
             "comment": comment,
         };
-        //$.post( "http://localhost:6274/api/student/review/"+sessionId,  )
+        /*connection to server is made
+        //$.post( "http://localhost:6274/api/student/review/"+sessionId,  )*/
         $.ajax({
             type: "POST",
             url: "http://localhost:6274/api/student/review/"+sessionId,

@@ -2,13 +2,13 @@
  * Created by christofferobel on 07/12/2016.
  */
 var lectureId = 0;
-$(document).ready(function () { // TODO: Add this to defence. document.cookie will essentially disallow any other cookies other than the session id... which is kind of fine due to the setup.
+$(document).ready(function () {
     var sessionId = document.cookie;
     if (!sessionId) {
         location.href = '/javascript-client-master/login.html';
         return;
     }
-
+    //course selection method
     $("#selectCourse").on("change", function () {
         var selectedValue = $("#selectCourse").val();
         if (selectedValue == "") {
@@ -16,7 +16,7 @@ $(document).ready(function () { // TODO: Add this to defence. document.cookie wi
         }
         var $lectureTableBody = $("#lectureTableBody");
         $lectureTableBody.html("");
-        //Her henter man og får kontakt med serveren. eksempelet fra chrashcourset til books
+
 
         $.getJSON("http://localhost:6274/api/lecture/" + sessionId + "/" + selectedValue, function (lectures) {
             lectures = jQuery.parseJSON(lectures);
@@ -25,6 +25,7 @@ $(document).ready(function () { // TODO: Add this to defence. document.cookie wi
             var buttonCss = $("#selectCourse").data("buttoncss");
             var buttonText = $("#selectCourse").data("name");
 
+            //structure for table
             lectures.forEach(function (lecture) {
 
                 $lectureTableBody.append(
@@ -58,6 +59,7 @@ function initiateSelectCourse() {
         return;
     }
 
+    //connection to server
     $.ajax({
         url:"http://localhost:6274/api/course/"+sessionId,
         method: "GET",

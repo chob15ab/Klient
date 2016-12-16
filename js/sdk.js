@@ -30,7 +30,7 @@ var SDK = {
     }
   },
 
-
+  //login method
    login: function (username, password, cb) {
     this.request({
       data: {
@@ -52,6 +52,7 @@ var SDK = {
     });
   },
 
+  //logout method
   logOut:function() {
     var sessionId = this.Storage.load("sessionId");
     this.request({

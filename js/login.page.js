@@ -1,4 +1,5 @@
 
+//sessionId is shown after logout
 $(document).ready(function () {
   var sessionId = SDK.Storage.load("sessionId");
   if (sessionId) {
